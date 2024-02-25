@@ -7,17 +7,47 @@
   </head>
   <body>
     <div id="root">
-      <!-- <h1>Namaste Everyone!</h1> -->
+      <!-- developers practise -->
+      <!-- <h1 id="title">Not rendered</h1> -->
     </div>
-  </body>
+    <!-- 1. Injecting REACT using CDN  and we can directly start using react. -->
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script>
+      const heading1 = React.createElement(
+        "h1",
+        // providing attributes
+        { id: "heading1", className: "heading" },
+        "Heading 1!"
+      );
+      const heading2 = React.createElement(
+        "h1",
+        // providing attributes
+        { id: "heading2", className: "heading" },
+        "Heading 2!"
+      );
 
-  <script>
-    // now we are using javascript for adding html elements
-    const heading = document.createElement("h1");
-    heading.innerHTML = "Namaste Everyone from JavaScript";
-    // how to put this inside root
-    // using appendChild()
-    const root = document.getElementById("root");
-    root.appendChild(heading);
-  </script>
+      const container = React.createElement(
+        "div",
+        {
+          id: "container",
+        },
+        // putting multiple childrens inside div in the form of array
+        [heading1, heading2]
+      );
+
+      // we need to tell react what is the root element inside our app
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+
+      // passing react element inside the root
+      root.render(container);
+    </script>
+  </body>
 </html>
