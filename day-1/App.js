@@ -1,30 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-const heading1 = React.createElement(
-  "h1",
-  // providing attributes
-  { id: "heading1", className: "heading" },
-  "Heading 1!"
-);
-const heading2 = React.createElement(
-  "h1",
-  // providing attributes
-  { id: "heading2", className: "heading" },
-  "Heading 2!"
+const Title = function () {
+  return (
+    <h1 className="Title" tabIndex="5">
+      Hey Everyone Title
+    </h1>
+  );
+};
+
+// Functional Component
+const HeadingComponent = () => (
+  <div id="container">
+    <Title />
+    <h1 className="heading">Namaste React Functional Component</h1>
+  </div>
 );
 
-const container = React.createElement(
-  "div",
-  {
-    id: "container",
-  },
-  // putting multiple childrens inside div in the form of array
-  [heading1, heading2]
-);
-
-// we need to tell react what is the root element inside our app
+// ReactDOM used for interacting with DOM elements
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-// passing react element inside the root
-root.render(container);
+// rendering functional component
+root.render(<HeadingComponent />);
