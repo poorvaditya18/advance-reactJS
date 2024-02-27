@@ -8,10 +8,12 @@ const title = (
   </h1>
 );
 
+// const data = api.getData()
+
 // Functional Component
 const HeadingComponent = () => (
   <div id="container">
-    {title}
+    {/* {data} */}
     <h1>{console.log(100 + 200)}</h1>
     <h1 className="heading">Namaste React Functional Component</h1>
   </div>
