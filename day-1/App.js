@@ -1,18 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-const Title = function () {
-  return (
-    <h1 className="Title" tabIndex="5">
-      Hey Everyone Title
-    </h1>
-  );
-};
+// react element
+const title = (
+  <h1 className="Title" tabIndex="5">
+    Hey Everyone Title
+  </h1>
+);
 
 // Functional Component
 const HeadingComponent = () => (
   <div id="container">
-    <Title />
+    {title}
+    <h1>{console.log(100 + 200)}</h1>
     <h1 className="heading">Namaste React Functional Component</h1>
   </div>
 );
