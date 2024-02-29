@@ -34,8 +34,9 @@
   background-color: pink;
 }
 
-.search-container {
+.filter {
   background-color: grey;
+  cursor: pointer;
   padding: 10px 10px;
   margin: 20px 0px;
 }
