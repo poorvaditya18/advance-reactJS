@@ -73,3 +73,8 @@
   height: 400px;
   background-color: rgba(227, 223, 223, 0.736);
 }
+
+.login {
+  padding: 0 20px;
+  cursor: pointer;
+}

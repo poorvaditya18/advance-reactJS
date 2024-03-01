@@ -28,13 +28,9 @@ const Body = () => {
     setlistOfRestaurants(parsedDataList);
   };
 
-  if (listOfRestaurants.length === 0) {
-    // loading or spinner
-    // instead of haiving loading and spinner use SHIMMER UI
-
-    return <Shimmer />;
-  }
-  return (
+  return listOfRestaurants.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className="body">
       <div className="filter">
         <button
