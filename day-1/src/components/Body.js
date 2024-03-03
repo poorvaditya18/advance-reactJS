@@ -13,7 +13,6 @@ const Body = () => {
 
   useEffect(() => {
     // callback function will be called after the component is rendered
-    console.log("making swiggy api call...");
     fetchData();
   }, []);
 
@@ -58,6 +57,7 @@ const Body = () => {
               // filter the restaurants card and update the UI
               // search Text
               console.log(searchText);
+
               // now we can update the listOfRestaurants
               const filterRestaurantBySearch = listOfRestaurants.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText)

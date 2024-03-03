@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LOGO_URL } from "../utils/constants";
 // Header component
 const Header = () => {
   // header will have logo and navItem
   const [btnName, setbtnName] = useState("Login");
+  console.log("Header Rendered");
+
+  useEffect(() => {}, [btnName]);
 
   return (
     <div className="header">
