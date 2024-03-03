@@ -4,3 +4,6 @@ export const CDN_URL =
 
 export const LOGO_URL =
   "https://assets.materialup.com/uploads/166d4a30-2f5a-4ef5-9634-9b828b42224d/preview.png";
+
+export const MENU_URL =
+  "https://foodfire.onrender.com/api/menu?page-type=REGULAR_MENU&complete-menu=true&lat=18.5912716&lng=73.73890899999999&&submitAction=ENTER&restaurantId=";
