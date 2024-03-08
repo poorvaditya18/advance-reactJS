@@ -1,4 +1,7 @@
+import { useState } from "react";
 const User = () => {
+  const [count] = useState(0);
+  const [count2] = useState(2);
   return (
     <div className="user-card">
       <h2>Name: Poorvaditya</h2>
