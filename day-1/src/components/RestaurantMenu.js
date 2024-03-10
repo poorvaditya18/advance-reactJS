@@ -2,24 +2,17 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { MENU_URL } from "../utils/constants";
 import Shimmer from "./Shimmer";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 const RestaurantMenu = () => {
-  const [resInfo, setResInfo] = useState(null);
-
   const { restaurantId } = useParams();
-  console.log(restaurantId);
 
-  useEffect(() => {
-    fetchMenu();
-  }, []);
-
-  const fetchMenu = async () => {
-
-    const data = await fetch(MENU_URL + restaurantId);
-    const json = await data.json();
-    // console.log(json.data);
-    setResInfo(json.data);
-  };
+  // Here RestaurantMenu is doing fetching data and displaying it.
+  // However it should be responsible for displaying data. And should not worry about fetching data.
+  // SRP : suppose somehow we can have a custom hook . This hook will have the fectching data logic.
+  // this give us resInfo . How to fetch data will be abstracted here.
+  // So, RestaurantMenu only needs to be responsible for displaying data.
+  const resInfo = useRestaurantMenu(restaurantId);
 
   if (resInfo === null) {
     return <Shimmer />;
