@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header.js";
 import Body from "./components/Body.js";
@@ -8,6 +8,10 @@ import Contact from "./components/Contact.js";
 import Error from "./components/Error.js";
 import RestaurantCard from "./components/RestaurantCard.js";
 import RestaurantMenu from "./components/RestaurantMenu.js";
+
+// Lazy loading - we will lazy load Grocery
+const Grocery = lazy(() => import("./components/Grocery.js"));
+
 // App Layout
 const AppLayout = () => {
   return (
@@ -42,6 +46,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/grocery",
+        element: (
+          <Suspense fallback={<h1>Loading Grocery..</h1>}>
+            <Grocery />
+          </Suspense>
+        ),
       },
       {
         // this should be dynamic path  -> :restaurantId this path is dynamic.
