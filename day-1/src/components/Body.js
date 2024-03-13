@@ -1,9 +1,8 @@
-import RestaurantCard from "./RestaurantCard.js";
+import RestaurantCard, { withPromotedLable } from "./RestaurantCard.js";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer.js";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus.js";
-
 // Body component
 const Body = () => {
   // useState variable
@@ -12,6 +11,12 @@ const Body = () => {
   const [filterRestaurantList, setfilterRestaurantList] = useState([]);
 
   const [searchText, setsearchText] = useState("");
+
+  console.log("List Of Restaurants", listOfRestaurants);
+
+  // passing RestaurantCard component to Higher order component
+  // it return a component. So RestaurantCardPromoted will store a component.
+  const RestaurantCardPromoted = withPromotedLable(RestaurantCard);
 
   useEffect(() => {
     // callback function will be called after the component is rendered
@@ -101,7 +106,12 @@ const Body = () => {
             to={"/restaurant/" + restaurant.info.id}
             key={restaurant.info.id}
           >
-            <RestaurantCard resData={restaurant} />{" "}
+            {/* if the restaurant is promoted then add a promoted label to it */}
+            {restaurant.info.promoted ? (
+              <RestaurantCardPromoted resData={restaurant} />
+            ) : (
+              <RestaurantCard resData={restaurant} />
+            )}
           </Link>
         ))}
       </div>

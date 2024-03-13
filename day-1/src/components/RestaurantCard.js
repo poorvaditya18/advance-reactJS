@@ -31,4 +31,24 @@ const RestaurantCard = (props) => {
   );
 };
 
+// Higher Order Component -> take input as component and it will return the enhance component
+// input -> Restaurant Card ==> RestaurantCardPromoted
+
+export const withPromotedLable = (RestaurantCard) => {
+  // it returns a component
+  // props-> will have resData
+  return (props) => {
+    console.log("Calling withPromotedLable");
+    return (
+      <div>
+        {/* adding label on RestaurantCard */}
+        <label className="absolute bg-green-700 text-white m-2 p-2 rounded-lg">
+          Promoted
+        </label>
+        <RestaurantCard {...props} />
+      </div>
+    );
+  };
+};
+
 export default RestaurantCard;
