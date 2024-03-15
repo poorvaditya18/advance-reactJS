@@ -7,14 +7,9 @@ import RestaurantCategory from "./RestaurantCategory.js";
 
 const RestaurantMenu = () => {
   const { restaurantId } = useParams();
-
-  // Here RestaurantMenu is doing fetching data and displaying it.
-  // However it should be responsible for displaying data. And should not worry about fetching data.
-  // SRP : suppose somehow we can have a custom hook . This hook will have the fectching data logic.
-  // this give us resInfo . How to fetch data will be abstracted here.
-  // So, RestaurantMenu only needs to be responsible for displaying data.
   const resInfo = useRestaurantMenu(restaurantId);
 
+  const [showIndex, setShowIndex] = useState(null); // by default first will be open
   if (resInfo === null) {
     return <Shimmer />;
   }
@@ -38,10 +33,20 @@ const RestaurantMenu = () => {
       <p className="font-bold text-lg my-2">
         {cuisines.join(", ")} - {costForTwoMessage}
       </p>
-      {categories.map((category) => (
+      {categories.map((category, index) => (
+        // Restuarant Menu is a controlled component.
         <RestaurantCategory
           key={category?.card?.card?.title}
           data={category?.card?.card}
+          showItems={index === showIndex ? true : false}
+          // if we change showIndex then it will automatically update it.
+          // So we need to modify state variable from parent -> not possible directly but indireclty we can do.
+          // on lhs setShowIndex it the function we are passing to the RestaurantCategory.
+          // on rhs setShowIndex it state variable function .
+          setShowIndex={() => {
+            console.log("changing value of show index");
+            index !== showIndex ? setShowIndex(index) : setShowIndex(null);
+          }}
         />
       ))}
     </div>
