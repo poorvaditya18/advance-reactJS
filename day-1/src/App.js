@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header.js";
 import Body from "./components/Body.js";
@@ -8,20 +8,32 @@ import Contact from "./components/Contact.js";
 import Error from "./components/Error.js";
 import RestaurantCard from "./components/RestaurantCard.js";
 import RestaurantMenu from "./components/RestaurantMenu.js";
+import UserContext from "./utils/UserContext.js";
 
 // Lazy loading - we will lazy load Grocery
 const Grocery = lazy(() => import("./components/Grocery.js"));
 
 // App Layout
 const AppLayout = () => {
+  // this userInfo we need to pass to the context
+  const [userName, setUserName] = useState();
+
+  useEffect(() => {
+    // Assume: api call for authentication
+    const data = {
+      name: "Poorvaditya",
+    };
+    setUserName(data.name);
+  }, []);
+
   return (
-    <div className="app">
-      {/* header will be intact. */}
-      <Header />
-      {/* here , outlet will render the childrens that will be passed to the parent. 
-        This Outlet will be replaced by the component according to the path. Hence it wont be visible inside html we you see developers console.*/}
-      <Outlet />
-    </div>
+    // so we are wrapping it . So everywhere it will new use. Basically overriding the value.
+    <UserContext.Provider value={{ loggedInUser: userName }}>
+      <div className="app">
+        <Header />
+        <Outlet />
+      </div>
+    </UserContext.Provider>
   );
 };
 

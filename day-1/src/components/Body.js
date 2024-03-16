@@ -12,7 +12,7 @@ const Body = () => {
 
   const [searchText, setsearchText] = useState("");
 
-  console.log("List Of Restaurants", listOfRestaurants);
+  // console.log("List Of Restaurants", listOfRestaurants);
 
   // passing RestaurantCard component to Higher order component
   // it return a component. So RestaurantCardPromoted will store a component.
@@ -73,8 +73,7 @@ const Body = () => {
             onClick={() => {
               // filter the restaurants card and update the UI
               // search Text
-              console.log(searchText);
-
+              // console.log(searchText);
               // now we can update the listOfRestaurants
               const filterRestaurantBySearch = listOfRestaurants.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText)

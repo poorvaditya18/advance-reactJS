@@ -44,7 +44,6 @@ const RestaurantMenu = () => {
           // on lhs setShowIndex it the function we are passing to the RestaurantCategory.
           // on rhs setShowIndex it state variable function .
           setShowIndex={() => {
-            console.log("changing value of show index");
             index !== showIndex ? setShowIndex(index) : setShowIndex(null);
           }}
         />
