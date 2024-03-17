@@ -1,6 +1,25 @@
+import { useDispatch } from "react-redux";
 import { CDN_URL } from "../utils/constants";
+import { addItem } from "../utils/cartSlice"; // importing action
 
 const ItemList = ({ items }) => {
+  // dispatch is a function given by useDispatch hook given by react-redux
+  const dispatch = useDispatch();
+
+  const handleAddItem = (item) => {
+    // WRITING TO STORE
+    // when we click , we need to dispatch an action
+    // to dispatch an action we first need to get access to dispatch
+    //dispatch addItem action, whatever we will pass inside action , it will go to the reducer function inside action.payload
+    /*
+     *  redux will create a object and passed as a action ->
+      {
+        payload:"Pizza"
+      }
+     */
+    dispatch(addItem(item));
+  };
+
   return (
     <div>
       {items.map((item) => (
@@ -23,7 +42,10 @@ const ItemList = ({ items }) => {
 
           <div className="w-3/12 p-4">
             <div className="absolute">
-              <button className="p-2 bg-black text-white shadow-lg mx-16 rounded-lg">
+              <button
+                className="p-2 bg-black text-white shadow-lg mx-16 rounded-lg"
+                onClick={() => handleAddItem(item)}
+              >
                 Add +
               </button>
             </div>

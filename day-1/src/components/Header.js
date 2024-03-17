@@ -3,14 +3,23 @@ import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 // Header component
 const Header = () => {
   // header will have logo and navItem
   const [btnName, setbtnName] = useState("Login");
   const onlineStatus = useOnlineStatus();
-
   const { loggedInUser } = useContext(UserContext);
+
+  // Reading From Store ---- useSelector Hook
+  // this useSelector -> comes from "react-redux"
+  // this useSelector -> gives access to the store
+  // Now here we are subscribing to the store using a Selector
+  // this selector helps to subscribe what portion of the store we should read.
+  // so, whenever store is changing it is updating the item automatically.
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
 
   useEffect(() => {}, [btnName]);
 
@@ -34,7 +43,9 @@ const Header = () => {
           <li className="px-4">
             <Link to="/grocery">Grocery</Link>
           </li>
-          <li className="px-4">Cart</li>
+          <li className="px-4 font-bold">
+            <Link to="/cart">Cart - ({cartItems.length} items)</Link>
+          </li>
           <button
             className="login"
             onClick={() => {

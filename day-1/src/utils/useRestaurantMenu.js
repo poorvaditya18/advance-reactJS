@@ -6,7 +6,6 @@ const useRestaurantMenu = (resId) => {
   const [resInfo, setResInfo] = useState(null);
 
   useEffect(() => {
-    console.log("Fetching data from custom hooks...");
     fetchData();
   }, []);
 

@@ -8,8 +8,7 @@ import RestaurantCategory from "./RestaurantCategory.js";
 const RestaurantMenu = () => {
   const { restaurantId } = useParams();
   const resInfo = useRestaurantMenu(restaurantId);
-
-  const [showIndex, setShowIndex] = useState(null); // by default first will be open
+  const [showIndex, setShowIndex] = useState(null); 
   if (resInfo === null) {
     return <Shimmer />;
   }

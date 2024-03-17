@@ -9,17 +9,18 @@ import Error from "./components/Error.js";
 import RestaurantCard from "./components/RestaurantCard.js";
 import RestaurantMenu from "./components/RestaurantMenu.js";
 import UserContext from "./utils/UserContext.js";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore.js";
+import Cart from "./components/Cart.js";
 
 // Lazy loading - we will lazy load Grocery
 const Grocery = lazy(() => import("./components/Grocery.js"));
 
 // App Layout
 const AppLayout = () => {
-  // this userInfo we need to pass to the context
   const [userName, setUserName] = useState();
 
   useEffect(() => {
-    // Assume: api call for authentication
     const data = {
       name: "Poorvaditya",
     };
@@ -27,19 +28,18 @@ const AppLayout = () => {
   }, []);
 
   return (
-    // so we are wrapping it . So everywhere it will new use. Basically overriding the value.
-    <UserContext.Provider value={{ loggedInUser: userName }}>
-      <div className="app">
-        <Header />
-        <Outlet />
-      </div>
-    </UserContext.Provider>
+    // configurin AppStore(redux store) with App
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ loggedInUser: userName }}>
+        <div className="app">
+          <Header />
+          <Outlet />
+        </div>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
-// creating routing configuration
-// means if path "/" then load AppLayout component
-// Now we need to provide this to render it . For this
 const appRouter = createBrowserRouter([
   {
     // parent route or root route
@@ -71,6 +71,10 @@ const appRouter = createBrowserRouter([
         // this should be dynamic path  -> :restaurantId this path is dynamic.
         path: "/restaurant/:restaurantId",
         element: <RestaurantMenu />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },

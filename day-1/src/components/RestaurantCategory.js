@@ -4,7 +4,6 @@ const RestaurantCategory = ({ data, showItems, setShowIndex }) => {
   //   console.log(data);
   // All the restaurant categories have their own state.
   //   const [showItems, setShowItems] = useState(false);
-
   const handleClick = () => {
     setShowIndex();
   };
